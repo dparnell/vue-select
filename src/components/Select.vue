@@ -516,6 +516,15 @@
        */
       inputId: {
         type: String
+      },
+
+      /**
+       * Disallow null as a value
+       @ @type {Boolean}
+       */
+      allowNull: {
+        type: Boolean,
+        default: true
       }
     },
 
@@ -631,16 +640,20 @@
        */
       deselect(option) {
         if (this.multiple) {
-          let ref = -1
-          this.mutableValue.forEach((val) => {
-            if (val === option || typeof val === 'object' && val[this.label] === option[this.label]) {
-              ref = val
-            }
-          })
-          var index = this.mutableValue.indexOf(ref)
-          this.mutableValue.splice(index, 1)
+          if(this.allowNull && this.mutableValue.length > 0) {
+            let ref = -1
+            this.mutableValue.forEach((val) => {
+              if (val === option || typeof val === 'object' && val[this.label] === option[this.label]) {
+                ref = val
+              }
+            })
+            var index = this.mutableValue.indexOf(ref)
+            this.mutableValue.splice(index, 1)
+          }
         } else {
-          this.mutableValue = null
+          if(this.allowNull) {
+            this.mutableValue = null
+          }
         }
       },
 
@@ -805,7 +818,7 @@
        */
       clearSearchOnBlur() {
         return this.clearSearchOnSelect && !this.multiple
-      },  
+      },
 
       /**
        * Return the current state of the
