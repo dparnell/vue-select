@@ -671,15 +671,15 @@
       },
 
       /**
-<<<<<<< HEAD
        * Disallow null as a value
        @ @type {Boolean}
        */
       allowNull: {
         type: Boolean,
         default: true
-      }
-=======
+      },
+
+      /**
        * Sets RTL support. Accepts 'ltr', 'rtl', 'auto'.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir
        * @type {String}
@@ -689,7 +689,6 @@
         type: String,
         default: 'auto'
       },
->>>>>>> main/master
     },
 
     data() {
