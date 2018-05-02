@@ -341,18 +341,18 @@
               :placeholder="searchPlaceholder"
               :tabindex="tabindex"
               :readonly="!searchable"
-              :style="{ width: isValueEmpty ? '100%' : 'auto' }"
+              :style="{ width: allowNull ? (isValueEmpty ? '100%' : 'auto') : '' }"
               :id="inputId"
               aria-label="Search for option"
       >
 
-      <button 
-        v-show="showClearButton" 
-        :disabled="disabled" 
+      <button
+        v-show="showClearButton && allowNull"
+        :disabled="disabled"
         @click="clearSelection"
-        type="button" 
-        class="clear" 
-        title="Clear selection" 
+        type="button"
+        class="clear"
+        title="Clear selection"
       >
         <span aria-hidden="true">&times;</span>
       </button>
